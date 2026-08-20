@@ -1,0 +1,29 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Logs / local
+*.log
+preview-emails.html
+
+# Env / secrets
+.env
+.env.*
+*.pem
+
+# Composer / Node (if added later)
+/vendor/
+/node_modules/
+composer.lock
+package-lock.json
+
+# WordPress local clutter
+wp-config.php
+uploads/
