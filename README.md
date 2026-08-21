@@ -1,41 +1,41 @@
 # MS Abandoned Cart
 
-WordPress / WooCommerce plugin for abandoned cart recovery emails.
+Плагин WordPress / WooCommerce для писем о брошенных корзинах.
 
-Tracks logged-in customers’ persistent carts, runs a daily check (WP-Cron), and sends branded HTML emails with preset coupon codes for new and returning customers.
+Отслеживает persistent-корзины авторизованных покупателей, раз в сутки проверяет их через WP-Cron и отправляет HTML-письма с промокодами для новых и постоянных клиентов.
 
-Built for a real WooCommerce flower-shop store (production use).
+Сделан для реального WooCommerce-магазина и использовался в продакшене.
 
-## Features
+## Возможности
 
-- Daily abandoned-cart check via WP-Cron (`ms_abandoned_cart_daily_check`)
-- Manual “run check” from WooCommerce settings (for testing)
-- Segmentation:
-  - **New customers** — no processing/completed orders
-  - **Returning customers** — have order history
-- Coupons are **not** auto-created; you set existing coupon codes in settings
-- HTML email templates (logo, cart table, CTA)
-- Activity tracking via `_ms_cart_last_activity`
-- One notification per abandoned session (`_ms_abandoned_cart_notified`)
-- File log: `wp-content/uploads/ms-abandoned-cart/abandoned-cart.log`
-- Compatible with WP Mail SMTP (`WC()->mailer()->send()` → `wp_mail`)
-- WooCommerce HPOS compatibility declared
+- Ежедневная проверка брошенных корзин через WP-Cron (`ms_abandoned_cart_daily_check`)
+- Ручной запуск проверки из настроек WooCommerce (для тестов)
+- Сегментация:
+  - **Новые клиенты** — нет заказов в статусах processing/completed
+  - **Постоянные клиенты** — есть история заказов
+- Купоны **не создаются** автоматически — в настройках указываются уже существующие коды
+- HTML-шаблоны писем (логотип, таблица корзины, кнопка CTA)
+- Учёт активности через `_ms_cart_last_activity`
+- Одно уведомление на брошенную сессию (`_ms_abandoned_cart_notified`)
+- Лог: `wp-content/uploads/ms-abandoned-cart/abandoned-cart.log`
+- Совместим с WP Mail SMTP (`WC()->mailer()->send()` → `wp_mail`)
+- Заявлена совместимость с WooCommerce HPOS
 
-## Requirements
+## Требования
 
 - WordPress 5.8+
 - PHP 7.4+
 - WooCommerce 5.0+
 
-## Installation
+## Установка
 
-1. Upload the `ms-abandoned-cart` folder to `wp-content/plugins/`
-2. Activate **MS Abandoned Cart** in Plugins
-3. Open **WooCommerce → Settings → Abandoned Cart** (or the plugin settings screen)
-4. Enable notifications, set delay (hours), coupon codes, and email copy
-5. Create matching coupons in WooCommerce (e.g. `WELCOME15`, `FLOWER5`)
+1. Загрузите папку `ms-abandoned-cart` в `wp-content/plugins/`
+2. Активируйте **MS Abandoned Cart** в разделе «Плагины»
+3. Откройте настройки плагина в WooCommerce
+4. Включите уведомления, задайте задержку (в часах), коды купонов и тексты писем
+5. Создайте соответствующие купоны в WooCommerce (например `WELCOME15`, `FLOWER5`)
 
-ZIP structure for upload:
+Структура ZIP для загрузки:
 
 ```
 ms-abandoned-cart.zip
@@ -46,32 +46,32 @@ ms-abandoned-cart.zip
     └── templates/
 ```
 
-## How it works
+## Как работает
 
-1. When a logged-in user updates the cart, the plugin stores last activity time.
-2. Cron (or manual run) finds users with a non-empty persistent cart.
-3. If delay since last activity is exceeded and the user was not notified yet → send email.
-4. After a successful order, notification flags are cleared as needed.
+1. При обновлении корзины у авторизованного пользователя сохраняется время последней активности.
+2. Cron (или ручной запуск) находит пользователей с непустой persistent-корзиной.
+3. Если прошло больше заданной задержки и уведомление ещё не отправлялось — уходит письмо.
+4. После успешного заказа флаги уведомления сбрасываются по логике плагина.
 
-Emails are **not** sent instantly on leave — only after cron + delay.
+Письма **не** уходят сразу при уходе с сайта — только после cron и истечения задержки.
 
-## Settings (defaults)
+## Настройки (по умолчанию)
 
-| Option | Default |
-|--------|---------|
-| Enabled | yes |
-| Delay | 24 hours |
-| New customer coupon | `WELCOME15` |
-| Returning customer coupon | `FLOWER5` |
+| Параметр | Значение |
+|----------|----------|
+| Включено | да |
+| Задержка | 24 часа |
+| Купон для новых | `WELCOME15` |
+| Купон для постоянных | `FLOWER5` |
 
-## Repository layout
+## Структура репозитория
 
 ```
 .
 ├── README.md
 ├── LICENSE
 ├── .gitignore
-└── ms-abandoned-cart/          ← plugin root (upload this folder)
+└── ms-abandoned-cart/          ← корень плагина (эту папку кладут в plugins)
     ├── ms-abandoned-cart.php
     ├── assets/
     │   └── logo-veresk.png
@@ -85,10 +85,10 @@ Emails are **not** sent instantly on leave — only after cron + delay.
         └── abandoned-cart-returning-customer.php
 ```
 
-## Version
+## Версия
 
 **1.2.3**
 
-## License
+## Лицензия
 
-GPL-2.0-or-later (same spirit as WordPress plugins).
+GPL-2.0-or-later (как у типичных WordPress-плагинов).
