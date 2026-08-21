@@ -91,4 +91,4 @@ ms-abandoned-cart.zip
 
 ## Лицензия
 
-GPL-2.0-or-later (как у типичных WordPress-плагинов).
+GPL-2.0-or-later 
